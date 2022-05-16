@@ -64,9 +64,10 @@ create table MonitoramentoSensor
     
 -- CRIANDO TABELA DE ALERTAS QUE SERÃO MOSTRADOS NA DASHBOARD --
 create table Alerta (
-idAlerta int primary key,
-fkMonitoramento int,
-foreign key (fkMonitoramento) references MonitoramentoSensor(fkSensor,idMonitoramento),
-tipoAlerta varchar (45)
-)auto_increment = 600;
-
+	idAlerta int,
+    fkSensor int,
+	fkMonitoramento int,
+    tipoAlerta varchar (45),
+	foreign key (fkSensor, fkMonitoramento) references MonitoramentoSensor (fkSensor, idMonitoramento),
+    primary key (idAlerta, fkSensor, fkMonitoramento)
+);
